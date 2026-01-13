@@ -2,17 +2,31 @@
 
 import { useState } from 'react'
 
+interface FormData {
+  name: string
+  phone: string
+  location: string
+  service: string
+}
+
+interface FormErrors {
+  name?: string
+  phone?: string
+  location?: string
+  service?: string
+}
+
 export default function LeadCapture() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
     location: '',
     service: ''
   })
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState<FormErrors>({})
 
   const validateForm = () => {
-    const newErrors = {}
+    const newErrors: FormErrors = {}
     
     // Name validation
     if (!formData.name.trim()) {
@@ -86,10 +100,10 @@ Please schedule a site visit at your earliest convenience.`
     })
     
     // Clear error when user starts typing
-    if (errors[name]) {
+    if (errors[name as keyof FormErrors]) {
       setErrors({
         ...errors,
-        [name]: ''
+        [name]: undefined
       })
     }
   }
