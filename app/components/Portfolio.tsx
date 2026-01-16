@@ -185,9 +185,10 @@ export default function Portfolio() {
         
         {/* CTA Section */}
         <div className="text-center">
-          <button className="bg-gray-900 hover:bg-gray-800 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-            Start Your Project
-          </button>
+         <a href="#contact" className="inline-block bg-gray-900 hover:bg-gray-800 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+               Start Your Project
+          </a>
+
         </div>
       </div>
     </section>
