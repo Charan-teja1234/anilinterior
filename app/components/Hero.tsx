@@ -213,12 +213,12 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight">
-          Anil Interior Adimula
-          <span className="block text-amber-400">Best Interior Designer & Carpenter</span>
+          Crafting Beautiful Interiors
+          <span className="block text-amber-400">That Feel Like Home</span>
         </h1>
         
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed">
-          Expert interior designer & carpenter by Anil Chary in Adimula, Hyderabad. Modular kitchens, bedroom interiors, pooja rooms, TV units & complete home solutions.
+          Expert interior designer & carpenter  by Adimula Anil Chary , Hyderabad.services across India. Custom furniture,Modular kitchens, bedroom interiors, pooja rooms, TV units & complete home interior solutions.
         </p>
         
         {/* CTA Buttons */}
