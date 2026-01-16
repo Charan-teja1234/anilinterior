@@ -109,7 +109,7 @@ Please schedule a site visit at your earliest convenience.`
   }
 
   return (
-    <section className="py-12 md:py-20 relative overflow-hidden">
+    <section id="contact" className="py-12 md:py-20 relative overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
