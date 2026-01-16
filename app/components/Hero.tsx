@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 
 export default function Hero() {
   const [showAfter, setShowAfter] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -84,6 +85,47 @@ export default function Hero() {
   }
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Navbar */}
+      <nav className="absolute top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="text-white font-bold text-xl md:text-2xl">
+              <span className="text-amber-400">Anil</span> Interiors
+            </div>
+            
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center gap-8">
+              <a href="#home" className="text-white hover:text-amber-400 transition-colors">Home</a>
+              <a href="#services" className="text-white hover:text-amber-400 transition-colors">Services</a>
+              <a href="#why-choose-us" className="text-white hover:text-amber-400 transition-colors">Why Us</a>
+              <a href="#portfolio" className="text-white hover:text-amber-400 transition-colors">Portfolio</a>
+              <a href="#contact" className="text-white hover:text-amber-400 transition-colors">Contact</a>
+            </div>
+            
+            {/* Mobile Menu Button */}
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-white">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
+          
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 space-y-3">
+              <a href="#home" onClick={() => setIsMenuOpen(false)} className="block text-white hover:text-amber-400 transition-colors">Home</a>
+              <a href="#services" onClick={() => setIsMenuOpen(false)} className="block text-white hover:text-amber-400 transition-colors">Services</a>
+              <a href="#why-choose-us" onClick={() => setIsMenuOpen(false)} className="block text-white hover:text-amber-400 transition-colors">Why Us</a>
+              <a href="#portfolio" onClick={() => setIsMenuOpen(false)} className="block text-white hover:text-amber-400 transition-colors">Portfolio</a>
+              <a href="#contact" onClick={() => setIsMenuOpen(false)} className="block text-white hover:text-amber-400 transition-colors">Contact</a>
+            </div>
+          )}
+        </div>
+      </nav>
       <script
         type="application/ld+json"
         suppressHydrationWarning={true}
@@ -131,12 +173,12 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight">
-          Crafting Beautiful Interiors
-          <span className="block text-amber-400">That Feel Like Home</span>
+          Anil Interior Adimula
+          <span className="block text-amber-400">Best Interior Designer & Carpenter</span>
         </h1>
         
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed">
-          Expert interior designer & carpenter services across India. Custom furniture, modular kitchens, wardrobes & complete home interior solutions.
+          Expert interior designer & carpenter by Anil Chary in Adimula, Hyderabad. Modular kitchens, bedroom interiors, pooja rooms, TV units & complete home solutions.
         </p>
         
         {/* CTA Buttons */}
