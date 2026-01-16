@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 export default function Hero() {
   const [showAfter, setShowAfter] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [navBg, setNavBg] = useState('transparent')
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -15,8 +15,35 @@ export default function Hero() {
   }, [])
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      const sections = [
+        { id: 'home', bg: 'bg-black/30 backdrop-blur-sm', textColor: 'text-white' },
+        { id: 'services', bg: 'bg-white shadow-md', textColor: 'text-gray-900' },
+        { id: 'why-choose-us', bg: 'bg-white shadow-md', textColor: 'text-gray-900' },
+        { id: 'portfolio', bg: 'bg-gray-50 shadow-md', textColor: 'text-gray-900' },
+        { id: 'contact', bg: 'bg-black/90 shadow-lg', textColor: 'text-white' }
+      ]
+
+      if (scrollY < 50) {
+        setNavBg('transparent')
+        return
+      }
+
+      for (const section of sections) {
+        const element = document.getElementById(section.id)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          if (rect.top <= 80 && rect.bottom >= 80) {
+            setNavBg(section.bg + ' ' + section.textColor)
+            return
+          }
+        }
+      }
+    }
+
     window.addEventListener('scroll', handleScroll)
+    handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -90,29 +117,33 @@ export default function Hero() {
       "reviewCount": "500"
     }
   }
+  const isLightBg = navBg.includes('text-gray-900')
+  const textColor = isLightBg ? 'text-gray-900' : 'text-white'
+  const hoverColor = isLightBg ? 'hover:text-amber-600' : 'hover:text-amber-400'
+
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Navbar */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-gray-900 shadow-lg' : 'bg-black/30 backdrop-blur-sm'
+        navBg === 'transparent' ? 'bg-black/30 backdrop-blur-sm' : navBg.split(' ').slice(0, -1).join(' ')
       }`}>
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-white font-bold text-xl md:text-2xl">
+            <div className={`${textColor} font-bold text-xl md:text-2xl transition-colors duration-300`}>
               <span className="text-amber-400">Anil</span> Interiors
             </div>
             
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-8">
-              <a href="#home" className="text-white hover:text-amber-400 transition-colors">Home</a>
-              <a href="#services" className="text-white hover:text-amber-400 transition-colors">Services</a>
-              <a href="#why-choose-us" className="text-white hover:text-amber-400 transition-colors">Why Us</a>
-              <a href="#portfolio" className="text-white hover:text-amber-400 transition-colors">Portfolio</a>
-              <a href="#contact" className="text-white hover:text-amber-400 transition-colors">Contact</a>
+              <a href="#home" className={`${textColor} ${hoverColor} transition-colors`}>Home</a>
+              <a href="#services" className={`${textColor} ${hoverColor} transition-colors`}>Services</a>
+              <a href="#why-choose-us" className={`${textColor} ${hoverColor} transition-colors`}>Why Us</a>
+              <a href="#portfolio" className={`${textColor} ${hoverColor} transition-colors`}>Portfolio</a>
+              <a href="#contact" className={`${textColor} ${hoverColor} transition-colors`}>Contact</a>
             </div>
             
             {/* Mobile Menu Button */}
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-white">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`md:hidden ${textColor} transition-colors duration-300`}>
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMenuOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -126,11 +157,11 @@ export default function Hero() {
           {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="md:hidden mt-4 pb-4 space-y-3">
-              <a href="#home" onClick={() => setIsMenuOpen(false)} className="block text-white hover:text-amber-400 transition-colors">Home</a>
-              <a href="#services" onClick={() => setIsMenuOpen(false)} className="block text-white hover:text-amber-400 transition-colors">Services</a>
-              <a href="#why-choose-us" onClick={() => setIsMenuOpen(false)} className="block text-white hover:text-amber-400 transition-colors">Why Us</a>
-              <a href="#portfolio" onClick={() => setIsMenuOpen(false)} className="block text-white hover:text-amber-400 transition-colors">Portfolio</a>
-              <a href="#contact" onClick={() => setIsMenuOpen(false)} className="block text-white hover:text-amber-400 transition-colors">Contact</a>
+              <a href="#home" onClick={() => setIsMenuOpen(false)} className={`block ${textColor} ${hoverColor} transition-colors`}>Home</a>
+              <a href="#services" onClick={() => setIsMenuOpen(false)} className={`block ${textColor} ${hoverColor} transition-colors`}>Services</a>
+              <a href="#why-choose-us" onClick={() => setIsMenuOpen(false)} className={`block ${textColor} ${hoverColor} transition-colors`}>Why Us</a>
+              <a href="#portfolio" onClick={() => setIsMenuOpen(false)} className={`block ${textColor} ${hoverColor} transition-colors`}>Portfolio</a>
+              <a href="#contact" onClick={() => setIsMenuOpen(false)} className={`block ${textColor} ${hoverColor} transition-colors`}>Contact</a>
             </div>
           )}
         </div>
