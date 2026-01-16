@@ -107,11 +107,6 @@ export default function Services() {
                 <p className="text-base text-gray-600 mb-8 leading-relaxed">
                   {service.description}
                 </p>
-                
-                {/* Outlined CTA Button - Left aligned, not full width */}
-                <button className="inline-block py-3 px-8 border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white rounded-sm text-sm font-medium tracking-wide transition-all duration-300">
-                  Explore Designs
-                </button>
               </div>
               </div>
             )
