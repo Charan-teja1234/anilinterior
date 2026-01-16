@@ -5,12 +5,19 @@ import { useState, useEffect } from 'react'
 export default function Hero() {
   const [showAfter, setShowAfter] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setShowAfter(prev => !prev)
     }, 4000)
     return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const structuredData = {
@@ -86,7 +93,9 @@ export default function Hero() {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Navbar */}
-      <nav className="absolute top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm">
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-gray-900 shadow-lg' : 'bg-black/30 backdrop-blur-sm'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="text-white font-bold text-xl md:text-2xl">
