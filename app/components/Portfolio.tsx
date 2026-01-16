@@ -125,7 +125,7 @@ export default function Portfolio() {
     : projects.filter(project => project.category === activeFilter)
 
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
+    <section id="portfolio" className="py-16 md:py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
@@ -182,14 +182,7 @@ export default function Portfolio() {
             </div>
           ))}
         </div>
-        
-        {/* CTA Section */}
-        <div className="text-center">
-         <a href="#contact" className="inline-block bg-gray-900 hover:bg-gray-800 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-               Start Your Project
-          </a>
 
-        </div>
       </div>
     </section>
   )
